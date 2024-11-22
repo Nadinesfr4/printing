@@ -1,5 +1,5 @@
-@include('admin.css')
-@include('admin.header')
+@extends('client.layout')
+@section('content')
 
 <main>
     			<!-- portfolio_section - start = -->
@@ -117,5 +117,4 @@
 		</main>
 		<!-- main body - en  -->
 
-@include('admin.footer')
-@include('admin.js')
+@endsection

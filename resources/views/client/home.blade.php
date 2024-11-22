@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@extends('layout')
+@extends('client.layout')
 @section('content')
 
 			<!-- banner_section - start -->
-                @include('admin.banner')
+                @include('client.aspect.banner')
 
 			<!-- feature_section - start
 			================================================== -->

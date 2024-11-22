@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('admin.css')
+    @include('client.aspect.css')
 </head>
 
 
 <body>
     <!-- header_section -->
-            @include('admin.header')
+            @include('client.aspect.header')
 
 
     <!-- main body - start -->
@@ -15,16 +15,16 @@
 
 
         <!-- sidebar mobile menu - start -->
-            @include('admin.sidebar')
+            @include('client.aspect.sidebar')
 
 
             @yield('content')
 
     <!-- sidebar mobile menu - start -->
-        @include('admin.footer')
+        @include('client.aspect.footer')
 
         {{-- js --}}
-        @include('admin.js')
+        @include('client.aspect.js')
 
     
 </body>

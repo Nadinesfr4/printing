@@ -1,5 +1,5 @@
-@include('admin.css')
-@include('admin.header')
+@extends('client.layout')
+@section('content')
 	<body>
 
 		<main>
@@ -183,5 +183,5 @@
 
 		</main>
 
-@include('admin.footer')
-@include('admin.js')
+	</body>
+	@endsection

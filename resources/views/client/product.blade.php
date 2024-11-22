@@ -1,10 +1,9 @@
-@include('admin.css')
-@include('admin.header')
+@extends('client.layout')
+@section('content')
 		<!-- main body - start-->
 		<main>
         
-				@include('admin.sidebar')	
-
+			
 			<!-- feature_section - start -->
 			<section class="feature_section sec_ptb_130 clearfix">
 				<div class="container">
@@ -382,7 +381,6 @@
 		<!-- main body - end -->
 
 
-@include('admin.footer')
-@include('admin.js')	
 	</body>
+	@endsection
 </html>

@@ -1,73 +1,68 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view ('home',[
+    return view ('client.home',[
         "tittle" => "Home"
     ]);
 });
 
 Route::get('/product', function () {
-    return view ('product',[
+    return view ('client.product',[
         "tittle" => "Product",
         "page" => "Product"
     ]);
 });
 
 Route::get('/contact', function () {
-    return view ('contact',[
+    return view ('client.contact',[
         "tittle" => "Contact",
         "page" => "Contact Us"
     ]);
 });
 
 Route::get('/product_detail', function () {
-    return view ('product_detail',[
+    return view ('client.product_detail',[
         "tittle" => "Product",
         "page" => "Product Deatils"
     ]);
 });
 
 Route::get('/portfolio_metro', function () {
-    return view ('portfolio_metro',[
+    return view ('client.portfolio_metro',[
         "tittle" => "Portofolio",
         "page" => "Portfolio metro"
     ]);
 });
 
 Route::get('/portfolio_masonry', function () {
-    return view ('portfolio_masonry',[
+    return view ('client.portfolio_masonry',[
          "tittle" => "Portofolio",
          "page" => "Portofolio Masonry"
     ]);
 });
 
 Route::get('/portofolio_details', function () {
-    return view ('portofolio_details',[
+    return view ('client.portofolio_details',[
          "tittle" => "Portofolio",
          "page" => "Portofolio Details"
     ]);
 });
 
 Route::get('/blog_grid', function () {
-    return view ('blog_grid',[
+    return view ('client.blog_grid',[
          "tittle" => "Blog",
          "page" => "Blog Grid"
     ]);
 });
 
-Route::get('/blog_standard', function () {
-    return view ('blog_standard',[
-         "tittle" => "Blog",
-         "page" => "Blog Standard"
-    ]);
-});
-
 Route::get('/blog_details', function () {
-    return view ('blog_details',[
+    return view ('client.blog_details',[
          "tittle" => "Blog",
          "page" => "Blog Details"
     ]);
 });
 
+Route::resource('dashboard',adminController::class);

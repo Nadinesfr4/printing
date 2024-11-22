@@ -1,5 +1,5 @@
-@include('admin.css')
-@include('admin.header')
+@extends('client.layout')
+@section('content')
 			<!-- details_section - start= -->
 			<section class="details_section service_details sec_ptb_130 bg_gray clearfix">
 				<div class="container">
@@ -273,7 +273,4 @@
 
 
 		</main>
-
-@include('admin.footer')
-
-@include('admin.js')
+@endsection

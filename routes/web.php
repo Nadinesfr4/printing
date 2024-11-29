@@ -66,3 +66,5 @@ Route::get('/blog_details', function () {
 });
 
 Route::resource('dashboard',adminController::class);
+Route::get('dashboard/edit', [adminController::class, 'edit'])->name('dashboard.edit');
+Route::put('dashboard/update', [adminController::class, 'update'])->name('dashboard.update');

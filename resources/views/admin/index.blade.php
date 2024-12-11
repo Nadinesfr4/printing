@@ -25,7 +25,6 @@
                             <th class="col-md-1">No</th>
                             <th class="col-md-1">Tanggal</th>
                             <th class="col-md-1">Post Tittle</th>
-                            <th class="col-md-1">Isi Blog</th>
                             <th class="col-md-1">Nama Penulis</th>
                             <th class="col-md-1">Cover</th>
                             <th class="col-md-1">Aksi</th>
@@ -38,7 +37,6 @@
                             <td>{{ $i }}</td>
                             <td>{{ $item->tanggal }}</td>
                             <td>{{ $item->judul }}</td>
-                            <td>{!! $item->isi !!}</td>
                             <td>{{ $item->penulis }}</td>
                             <td>
                                 @if($item->gambar)

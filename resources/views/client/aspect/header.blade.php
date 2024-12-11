@@ -5,8 +5,17 @@
                 <i class="far fa-arrow-up"></i>
             </a>
         </div>
+        <div>
+            <a href="https://wa.me/6285735501035?text=Isi Pesan" target="_blank" id="wa">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path
+                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                </svg>
+            </a>
+        </div>
         <!-- backtotop - end -->
-    
+
         <!-- preloader - start -->
         <div class="preloader">
             <div class="animation_preloader">
@@ -31,7 +40,7 @@
             </div>
         </div>
         <!-- preloader - end -->
-        
+
         <header class="header_section sticky_header header_default clearfix">
             <div class="header_top {{ Request::is('/') ? 'bg_default_blue text-white' : 'bg_light' }} clearfix">
                 <div class="maxw_1420 container">
@@ -45,7 +54,7 @@
                         </div>
                         <div class="col-lg-4">
                             <ul class="header_items_list ul_li_right clearfix">
-                                @if(Request::is('/'))
+                                @if (Request::is('/'))
                                     <li>
                                         <div class="header_social_links d-flex align-items-center">
                                             <span class="social_title text-white">Social Links:</span>
@@ -84,7 +93,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <!-- Bagian header_bottom dengan logika untuk kelas tambahan -->
             <div class="header_bottom {{ Request::is('/') ? '' : 'bg_default_blue' }}">
                 <div class="maxw_1420 container">
@@ -92,22 +101,21 @@
                         <div class="col-lg-3">
                             <div class="brand_logo">
                                 <a href="/">
-                                    <img src="{{ asset('assets/images/logo/logo_01_1x.png') }}" 
-                                         srcset="{{ asset('assets/images/logo/logo_01_1x.png 1x') }}" 
-                                         alt="logo_not_found">
+                                    <img src="{{ asset('assets/images/logo/logo_01_1x.png') }}"
+                                        srcset="{{ asset('assets/images/logo/logo_01_1x.png 1x') }}"
+                                        alt="logo_not_found">
                                 </a>
                                 <ul class="mobilemenu_btns_group ul_li_right clearfix">
                                     <li>
-                                        <button type="button" class="search_btn" 
-                                                data-bs-toggle="collapse" 
-                                                data-bs-target="#search_body_collapse" 
-                                                aria-expanded="false" 
-                                                aria-controls="search_body_collapse">
+                                        <button type="button" class="search_btn" data-bs-toggle="collapse"
+                                            data-bs-target="#search_body_collapse" aria-expanded="false"
+                                            aria-controls="search_body_collapse">
                                             <i class="fal fa-search"></i>
                                         </button>
                                     </li>
                                     <li>
-                                        <button type="button" class="mobile_menu_btn"><i class="fal fa-bars"></i></button>
+                                        <button type="button" class="mobile_menu_btn"><i
+                                                class="fal fa-bars"></i></button>
                                     </li>
                                 </ul>
                             </div>
@@ -115,49 +123,51 @@
                         <div class="col-lg-6">
                             <nav class="main_menu clearfix">
                                 <ul class="ul_li_center clearfix">
-                                    <li class="{{ ($tittle === 'Home') ? 'active' : '' }}">
+                                    <li class="{{ $tittle === 'Home' ? 'active' : '' }}">
                                         <a href="/">Home</a>
                                     </li>
-            
-                                    <li class="{{ ($tittle === 'Product') ? 'active' : '' }}">
+
+                                    <li class="{{ $tittle === 'Product' ? 'active' : '' }}">
                                         <a href="product">Product</a>
                                     </li>
-            
-                                    <li class="{{ ($tittle === 'Portofolio') ? 'active' : '' }}">
+
+                                    <li class="{{ $tittle === 'Portofolio' ? 'active' : '' }}">
                                         <a href="portfolio_masonry">Portfolio</a>
                                     </li>
-            
-                                    <li class="{{ ($tittle === 'Blog') ? 'active' : '' }}">
+
+                                    <li class="{{ $tittle === 'Blog' ? 'active' : '' }}">
                                         <a href="blog_grid">Blog</a>
                                     </li>
-            
-                                    <li class="{{ ($tittle === 'Contact') ? 'active' : '' }}">
+
+                                    <li class="{{ $tittle === 'Contact' ? 'active' : '' }}">
                                         <a href="contact">Contact</a>
-                                    </li>    
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
-            
+
                         <div class="col-lg-3">
                             <ul class="header_btns_group ul_li_right clearfix">
                                 <li>
-                                    <button type="button" class="action_btn search_btn bg_default_purple" data-bs-toggle="collapse" data-bs-target="#search_body_collapse" aria-expanded="false" aria-controls="search_body_collapse">
+                                    <button type="button" class="action_btn search_btn bg_default_purple"
+                                        data-bs-toggle="collapse" data-bs-target="#search_body_collapse"
+                                        aria-expanded="false" aria-controls="search_body_collapse">
                                         <i class="fal fa-search"></i>
                                     </button>
                                 </li>
                                 <li>
                                     <a class="custom_btn bg_default_yellow" href="contact">
-                                        get a quote 
+                                        get a quote
                                         <span><i class="fal fa-arrow-right"></i></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-            
+
                     </div>
                 </div>
             </div>
-            
+
             <div id="search_body_collapse" class="search_body_collapse collapse">
                 <div class="search_body">
                     <div class="container maxw_1420">
@@ -173,27 +183,24 @@
         </header>
 
         @if (!Request::is('/'))
-        
-    <main>
-        <!-- breadcrumb_section - start -->
-        <section class="breadcrumb_section d-flex align-items-center clearfix" 
-                 data-background="{{ asset('assets/images/breadcrumb/bg_01.jpg') }}">
-            <div class="container">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-delay=".1s">
-                        <h1 class="page_title mb-0">{{ $page }}</h1>
-                    </div>
+            <main>
+                <!-- breadcrumb_section - start -->
+                <section class="breadcrumb_section d-flex align-items-center clearfix"
+                    data-background="{{ asset('assets/images/breadcrumb/bg_01.jpg') }}">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-delay=".1s">
+                                <h1 class="page_title mb-0">{{ $page }}</h1>
+                            </div>
 
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-delay=".1s">
-                        <ul class="breadcrumb_nav ul_li_right clearfix">
-                            <li><a href="/">Home</a></li>
-                            <li>{{ $page }}</li>
-                        </ul>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-delay=".1s">
+                                <ul class="breadcrumb_nav ul_li_right clearfix">
+                                    <li><a href="/">Home</a></li>
+                                    <li>{{ $page }}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
-@endif
-
-        
+                </section>
+            </main>
+        @endif

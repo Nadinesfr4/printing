@@ -2,7 +2,7 @@
 @section('konten')
 
 <!-- START FORM -->
-<form action="{{ url('dashboard/update') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('dashboard.update', $data->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <a href="{{ url('dashboard') }}" class="my-3 p-2 btn btn-secondary">Kembali</a>
@@ -10,7 +10,7 @@
         <div class="mb-3 row">
             <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" name="tanggal" id="tanggal" value="{{ $data->tanggal }}">
+                <input type="hidden" class="form-control" name="tanggal" id="tanggal" value="{{ $data->tanggal }}">
             </div>
         </div>
         <div class="mb-3 row">
@@ -26,9 +26,16 @@
             </div>
         </div>
         <div class="mb-3 row">
-                    <label for="isi" class="col-sm-2 col-form-label">Isi Blog</label>
-                    @include('admin.isi')
-                </div>
+            <label for="isi" class="col-sm-2 col-form-label">Isi Blog</label>
+            <div class="col-sm-10">
+            <textarea type="text" class="form-control" name="isi" id="summernote">{{ $data->isi }}</textarea>
+            </div>
+            <script>
+              $(document).ready(function() {
+                  $('#summernote').summernote();
+              });
+            </script>
+        </div>
         <div class="mb-3 row">
             <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
             <div class="col-sm-10">

@@ -9,24 +9,31 @@
                 <div class="mb-3 row">
                     <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" name="tanggal" id="tanggal">
+                        <input type="date" class="form-control" name="tanggal" id="tanggal" required>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="nama" class="col-sm-2 col-form-label">Judul Blog</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="judul" id="judul">
+                        <input type="text" class="form-control" name="judul" id="judul" required>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="penulis" class="col-sm-2 col-form-label">Nama Penulis</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="penulis" id="penulis">
+                        <input type="text" class="form-control" name="penulis" id="penulis" required>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="isi" class="col-sm-2 col-form-label">Isi Blog</label>
-                    @include('admin.isi')
+                    <div class="col-sm-10">
+                    <textarea type="text" class="form-control" name="isi" id="summernote"></textarea>
+                    <div class="col-sm-10">
+                    <script>
+                      $(document).ready(function() {
+                          $('#summernote').summernote();
+                      });
+                    </script>
                 </div>
                 <div class="mb-3 row">
                     <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>

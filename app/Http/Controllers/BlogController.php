@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class adminController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = admin::orderBy('tanggal','desc') -> paginate(3);
+        $data = Blog::orderBy('tanggal','desc') -> paginate(5);
         return view('admin.index')->with('data', $data);
     }
 
@@ -32,6 +32,7 @@ class adminController extends Controller
     $request->validate([
         'tanggal' => 'required|date',
         'judul' => 'required|string|max:255',
+        'isi' => 'required|string',
         'penulis' => 'required|string|max:255',
         'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', 
     ]);
@@ -43,14 +44,16 @@ class adminController extends Controller
     }
 
     // Simpan data ke tabel blog atau admin
-    Admin::create([
+    $data = [
         'tanggal' => $request->tanggal,
         'judul' => $request->judul,
+        'isi' => $request->isi,
         'penulis' => $request->penulis,
         'gambar' => $gambarPath,
-    ]);
+    ];
 
-    return redirect('dashboard')->with('success', 'Data berhasil ditambahkan');
+    Blog::create($data);
+    return redirect()->to('dashboard')->with('success', 'Blog baru berhasil ditambahkan');
 }
 
 
@@ -61,9 +64,9 @@ class adminController extends Controller
     }
 
     
-    public function edit($tanggal)
+    public function edit($id)
     {
-    $data = Admin::where('tanggal', $tanggal)->first();
+    $data = Blog::where('id', $id)->first();
 
     if (!$data) {
         return redirect('dashboard')->with('error', 'Data tidak ditemukan.');
@@ -72,52 +75,65 @@ class adminController extends Controller
     return view('admin.edit', compact('data'));
     }
 
-    public function update(Request $request, $tanggal)
-    {
+    public function update(Request $request, $id)
+{
+    // Validasi input
     $request->validate([
-        'tanggal' => 'required|date',
         'judul' => 'required|string|max:255',
+        'isi' => 'required|string',
         'penulis' => 'required|string|max:255',
-        'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+        'gambar' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Validasi gambar
     ]);
 
-    $data = Admin::where('tanggal', $tanggal)->first();
+    $data = Blog::where('id', $id)->first();
+
+    if (!$data) {
+        return redirect()->to('dashboard')->with('error', 'Data tidak ditemukan.');
+    }
+
+    // Proses gambar
+    $gambarPath = $data->gambar; // Tetap gunakan gambar lama jika tidak ada yang baru
+    if ($request->hasFile('gambar')) {
+        // Hapus gambar lama jika ada
+        if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+            unlink(storage_path('app/public/' . $data->gambar));
+        }
+
+        // Upload gambar baru
+        $gambarPath = $request->file('gambar')->store('images', 'public');
+    }
+
+    // Update data tanpa mengubah primary key 'tanggal'
+    $data->update([
+        'judul' => $request->judul,
+        'isi' => $request->isi,
+        'penulis' => $request->penulis,
+        'gambar' => $gambarPath,
+    ]);
+
+    // Redirect dengan pesan sukses
+    return redirect()->to('dashboard')->with('success', 'Blog berhasil diperbarui.');
+}
+
+
+
+    public function destroy(string $id)
+{
+    // Cari data berdasarkan primary key (dalam hal ini 'tanggal')
+    $data = Blog::find($id);
 
     if (!$data) {
         return redirect('dashboard')->with('error', 'Data tidak ditemukan.');
     }
 
-    // Proses gambar
-    $gambarPath = $data->gambar;
-    if ($request->hasFile('gambar')) {
-        $gambarPath = $request->file('gambar')->store('images', 'public');
-        if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
-            unlink(storage_path('app/public/' . $data->gambar));
-        }
+    // Hapus gambar jika ada
+    if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
+        unlink(storage_path('app/public/' . $data->gambar));
     }
 
-    $data->update([
-        'tanggal' => $request->tanggal,
-        'judul' => $request->judul,
-        'penulis' => $request->penulis,
-        'gambar' => $gambarPath,
-    ]);
+    $data->delete();
 
-    return redirect('dashboard')->with('success', 'Data berhasil diperbarui!');
-    }
-
-
-    public function destroy($tanggal)
-{
-    $data = Admin::where('tanggal', $tanggal)->first();
-
-    if ($data) {
-        if ($data->gambar && file_exists(storage_path('app/public/' . $data->gambar))) {
-            unlink(storage_path('app/public/' . $data->gambar));
-        }
-        $data->delete();
-    }
-
-    return redirect('dashboard')->with('success', 'Data berhasil dihapus!');
+    return redirect('dashboard')->with('success', 'Blog berhasil dihapus');
 }
+
 }

@@ -53,7 +53,7 @@ class BlogController extends Controller
         ];
 
         Blog::create($data);
-        return redirect()->to('dashboard')->with('success', 'Blog baru berhasil ditambahkan');
+        return redirect()->route('blog.index')->with('success', 'Blog baru berhasil ditambahkan');
     }
 
 
@@ -112,7 +112,7 @@ class BlogController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->to('dashboard')->with('success', 'Blog berhasil diperbarui.');
+        return redirect()->route('blog.index')->with('success', 'Blog berhasil diperbarui.');
     }
 
 
@@ -133,6 +133,6 @@ class BlogController extends Controller
 
         $data->delete();
 
-        return redirect('dashboard')->with('success', 'Blog berhasil dihapus');
+        return redirect()->route('blog.index')->with('success', 'Blog berhasil dihapus');
     }
 }

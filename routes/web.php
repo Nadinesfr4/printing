@@ -1,68 +1,93 @@
 <?php
 
-use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
-    return view ('client.home',[
+    return view('client.home', [
         "tittle" => "Home"
     ]);
 });
 
 Route::get('/product', function () {
-    return view ('client.product',[
+    return view('client.product', [
         "tittle" => "Product",
         "page" => "Product"
     ]);
 });
 
 Route::get('/contact', function () {
-    return view ('client.contact',[
+    return view('client.contact', [
         "tittle" => "Contact",
         "page" => "Contact Us"
     ]);
 });
 
 Route::get('/product_detail', function () {
-    return view ('client.product_detail',[
+    return view('client.product_detail', [
         "tittle" => "Product",
         "page" => "Product Deatils"
     ]);
 });
 
 Route::get('/portfolio_metro', function () {
-    return view ('client.portfolio_metro',[
+    return view('client.portfolio_metro', [
         "tittle" => "Portofolio",
         "page" => "Portfolio metro"
     ]);
 });
 
 Route::get('/portfolio_masonry', function () {
-    return view ('client.portfolio_masonry',[
-         "tittle" => "Portofolio",
-         "page" => "Portofolio Masonry"
+    return view('client.portfolio_masonry', [
+        "tittle" => "Portofolio",
+        "page" => "Portofolio Masonry"
     ]);
 });
 
 Route::get('/portofolio_details', function () {
-    return view ('client.portofolio_details',[
-         "tittle" => "Portofolio",
-         "page" => "Portofolio Details"
+    return view('client.portofolio_details', [
+        "tittle" => "Portofolio",
+        "page" => "Portofolio Details"
     ]);
 });
 
 Route::get('/blog_grid', function () {
-    return view ('client.blog_grid',[
-         "tittle" => "Blog",
-         "page" => "Blog Grid"
+    return view('client.blog_grid', [
+        "tittle" => "Blog",
+        "page" => "Blog Grid"
     ]);
 });
 
 Route::get('/blog_details', function () {
-    return view ('client.blog_details',[
-         "tittle" => "Blog",
-         "page" => "Blog Details"
+    return view('client.blog_details', [
+        "tittle" => "Blog",
+        "page" => "Blog Details"
     ]);
 });
 
-Route::resource('dashboard',BlogController::class);
+// Route::resource('dashboard',BlogController::class);
+Route::prefix('blog')->group(function () {
+    Route::get('/',[BlogController::class, 'index'])->name('blog.index');
+    Route::get('/create',[BlogController::class, 'create'])->name('blog.create');
+    Route::post('/store',[BlogController::class, 'store'])->name('blog.store');
+    Route::get('/show/{id}',[BlogController::class, 'show'])->name('blog.show');
+    Route::get('/edit/{id}',[BlogController::class, 'edit'])->name('blog.edit');
+    Route::put('/update/{id}',[BlogController::class, 'update'])->name('blog.update');
+    Route::delete('/hapus/{id}',[BlogController::class, 'destroy'])->name('blog.hapus');
+});
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/',[DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/d', [DashboardController::class, 'index_conten']);
+});
+
+Route::prefix('produk')->group(function () {
+    Route::get('/',[ProdukController::class, 'index'])->name('product.index');
+    Route::get('/create', [ProdukController::class, 'create'])->name('product.create');
+    Route::post('/store', [ProdukController::class, 'store'])->name('product.store');
+    Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('product.edit');
+    Route::put('/update/{id}', [ProdukController::class, 'update'])->name('product.update');
+    Route::delete('/hapus/{id}', [ProdukController::class, 'destroy'])->name('product.hapus');
+});

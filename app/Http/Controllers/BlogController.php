@@ -10,9 +10,17 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Blog::orderBy('tanggal','desc') -> paginate(5);
+        $katakunci = $request->katakunci;
+        $jumlahbaris = 5;
+        if (strlen($katakunci)){
+            $data = Blog::where('judul', 'like', "%$katakunci%")
+            ->orWhere('penulis', 'like', "%$katakunci%")
+            -> paginate($jumlahbaris);
+        }else{
+            $data = Blog::orderBy('id','desc') -> paginate($jumlahbaris);
+        }
         return view('admin.index')->with('data', $data);
     }
 

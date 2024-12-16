@@ -195,11 +195,9 @@
 						<li><a href="#!">03</a></li>
 						<li><a href="#!"><i class="far fa-angle-double-right"></i></a></li>
 					</ul>
-
 				</div>
 			</section>
 			<!-- blog_section - end -->
-
 
 		</main>
 		<!-- main body - end -->

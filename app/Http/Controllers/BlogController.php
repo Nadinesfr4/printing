@@ -16,6 +16,7 @@ class BlogController extends Controller
         return view('admin.index')->with('data', $data);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */

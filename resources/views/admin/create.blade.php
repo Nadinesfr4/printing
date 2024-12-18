@@ -28,15 +28,12 @@
                 <div class="mb-3 row">
                     <label for="isi" class="col-sm-2 col-form-label">Isi Blog</label>
                     <div class="col-sm-10">
-                        <textarea type="text" class="form-control" name="isi" id="summernote"></textarea>
-                        <div class="col-sm-10">
-                            <script>
-                                $(document).ready(function() {
-                                    $('#summernote').summernote();
-                                });
-                            </script>
-                        </div>
-                    </div>
+                    <textarea type="text" class="form-control" name="isi" id="summernote"></textarea>
+                    <script>
+                      $(document).ready(function() {
+                          $('#summernote').summernote();
+                      });
+                    </script>
                 </div>
                 <div class="mb-3 row">
                     <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>

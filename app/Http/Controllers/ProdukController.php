@@ -32,31 +32,38 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $validated = $request->validate([
             'nama_produk' => 'required|string|max:225',
             'deskripsi_produk' => 'required|string',
             'harga_produk' => 'required|integer',
+            'buy' => 'required|in:ya,tidak',
             'gambar_produk' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
 
+        $pilihan = $validated['buy'] === 'ya';
         $gambarPath = null;
         if ($request->hasFile('gambar_produk')) {
             $file = $request->file('gambar_produk');
 
             $fileName = date('Y-m-d_H-i-s') . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-            // Simpan file ke folder 'images' di penyimpanan publik
+           
             $gambarPath = $file->storeAs('images', $fileName, 'public');
         }
 
+      
         $data = [
             'nama_produk' => $request->nama_produk,
             'deskripsi_produk' => $request->deskripsi_produk,
             'harga_produk' => $request->harga_produk,
+            'buy' => $pilihan,  
             'gambar_produk' => $gambarPath,
         ];
 
+        
         Produk::create($data);
+
+      
         return redirect()->route('product.index');
     }
 
@@ -82,12 +89,14 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         // Validasi input
-        Validator::make($request->all(), [
+        $validated = $request->validate([
             'nama_produk' => 'required|string|max:225',
             'deskripsi_produk' => 'required|string',
             'harga_produk' => 'required|integer',
+            'buy' => 'required|in:ya,tidak',
             'gambar_produk' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
         ]);
+        $pilihan = $validated['buy'] === 'ya';
 
         $data = Produk::where('id', $id)->first();
 
@@ -111,6 +120,7 @@ class ProdukController extends Controller
             'nama_produk' => $request->nama_produk,
             'deskripsi_produk' => $request->deskripsi_produk,
             'harga_produk' => $request->harga_produk,
+            'buy' => $pilihan,  
             'gambar_produk' => $gambarPath,
         ]);
 
@@ -128,7 +138,7 @@ class ProdukController extends Controller
         }
 
         if ($data->gambar_produk && file_exists(storage_path('app/public/' . $data->gambar_produk))) {
-            unlink(storage_path('app/public/' . $data->gambar_produk)); 
+            unlink(storage_path('app/public/' . $data->gambar_produk));
         }
 
         DB::table('products')->where('id', $id)->delete();

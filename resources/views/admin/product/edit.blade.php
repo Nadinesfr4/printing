@@ -45,6 +45,22 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Pilih Ya atau Tidak</label>
+                    <div class="col-sm-10">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="buy" id="pilihan_ya" value="ya"
+                                @if (old('buy', $data->buy) === 1) checked @endif>
+                            <label class="form-check-label" for="pilihan_ya">Ya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="buy" id="pilihan_tidak" value="tidak"
+                                @if (old('buy', $data->buy) === 0) checked @endif>
+                            <label class="form-check-label" for="pilihan_tidak">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
                     <label for="" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>

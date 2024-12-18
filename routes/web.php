@@ -4,33 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
 
-Route::get('/', function () {
-    return view('client.home', [
-        "tittle" => "Home"
-    ]);
-});
+Route::get('/',[LandingPageController::class, 'home']);
+Route::get('/product',[LandingPageController::class, 'product']);
+Route::get('/contact',[LandingPageController::class, 'contact']);
+Route::get('/product_detail/{id}',[LandingPageController::class, 'product_detail'])->name('product_detail');
 
-Route::get('/product', function () {
-    return view('client.product', [
-        "tittle" => "Product",
-        "page" => "Product"
-    ]);
-});
-
-Route::get('/contact', function () {
-    return view('client.contact', [
-        "tittle" => "Contact",
-        "page" => "Contact Us"
-    ]);
-});
-
-Route::get('/product_detail', function () {
-    return view('client.product_detail', [
-        "tittle" => "Product",
-        "page" => "Product Deatils"
-    ]);
-});
 
 Route::get('/portfolio_metro', function () {
     return view('client.portfolio_metro', [

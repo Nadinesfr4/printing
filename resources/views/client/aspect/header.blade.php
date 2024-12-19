@@ -87,6 +87,7 @@
         
             <!-- Bagian header_bottom dengan logika untuk kelas tambahan -->
             <div class="header_bottom {{ Request::is('/') ? '' : 'bg_default_blue' }}">
+                {{-- @foreach ($data as $item) --}}
                 <div class="maxw_1420 container">
                     <div class="row align-items-center">
                         <div class="col-lg-3">
@@ -128,8 +129,8 @@
                                     </li>
             
                                     <li class="{{ ($tittle === 'Blog') ? 'active' : '' }}">
-                                        <a href="blog_grid">Blog</a>
-                                    </li>
+                                        <a href="{{ route('blog.index') }}">Blog</a>
+                                   </li>
             
                                     <li class="{{ ($tittle === 'Contact') ? 'active' : '' }}">
                                         <a href="contact">Contact</a>
@@ -195,5 +196,10 @@
         </section>
     </main>
 @endif
+{{-- @endforeach
+
+<div>
+    {{ $data->links() }}
+</div> --}}
 
         

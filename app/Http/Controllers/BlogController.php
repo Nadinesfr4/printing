@@ -10,24 +10,75 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        $katakunci = $request->katakunci;
-        $jumlahbaris = 5;
-        if (strlen($katakunci)){
-            $data = Blog::where('judul', 'like', "%$katakunci%")
+
+//     public function index(Request $request)
+// {
+//     $katakunci = $request->katakunci;
+//     $jumlahbaris = 5;
+
+//     if (strlen($katakunci)) {
+//         $data = Blog::where('judul', 'like', "%$katakunci%")
+//             ->orWhere('penulis', 'like', "%$katakunci%")
+//             ->paginate($jumlahbaris);
+//     } else {
+//         $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+//     }
+
+//     return view('client.blog_grid', [
+//         'tittle' => 'Blog',
+//         'page' => 'Blog Grid',
+//         'data' => $data
+//     ]);
+// }
+
+// public function index(Request $request)
+// {
+//     $katakunci = $request->katakunci;
+//     $jumlahbaris = 5;
+
+//     if (strlen($katakunci)) {
+//         $data = Blog::where('judul', 'like', "%$katakunci%")
+//             ->orWhere('penulis', 'like', "%$katakunci%")
+//             ->paginate($jumlahbaris);
+//     } else {
+//         $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+//     }
+
+//     return view('admin.index', [ // Gunakan view admin untuk dashboard
+//         'data' => $data,
+//     ]);
+// }
+
+public function index(Request $request)
+{
+    $katakunci = $request->katakunci;
+    $jumlahbaris = 5;
+
+    if (strlen($katakunci)) {
+        $data = Blog::where('judul', 'like', "%$katakunci%")
             ->orWhere('penulis', 'like', "%$katakunci%")
-            -> paginate($jumlahbaris);
-        }else{
-            $data = Blog::orderBy('id','desc') -> paginate($jumlahbaris);
-        }
-        return view('admin.index')->with('data', $data);
+            ->paginate($jumlahbaris);
+    } else {
+        $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
     }
 
+    return view('admin.index', [ // Admin dashboard view
+        'data' => $data,
+    ]);
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
+public function blogGrid(Request $request)
+{
+    $jumlahbaris = 5;
+    $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+
+    return view('client.blog_grid', [ // Client blog grid view
+        'tittle' => 'Blog',
+        'page' => 'Blog Grid',
+        'data' => $data
+    ]);
+}
+    
     public function create()
     {
         return view('admin.create');
@@ -67,10 +118,33 @@ class BlogController extends Controller
 
 
     
-    public function show(string $id)
-    {
-        return view('client.blog_grid');
-    }
+// public function show(string $id)
+// {
+//     $data = Blog::findOrFail($id); // atau Post::where('id', $id)->firstOrFail();
+    
+//     return view('client.blog_grid', compact('data'));
+// }
+
+// public function show(string $id)
+// {
+//     $data = Blog::findOrFail($id); // Ambil data berdasarkan ID
+//     return view('client.blog_grid', [
+//         "tittle" => "Blog",
+//         "page" => "Blog Grid",
+//         "data" => $data,
+//     ]);
+// }
+
+public function show(string $id)
+{
+    $data = Blog::findOrFail($id); // Ambil data berdasarkan ID
+
+    return view('client.blog_details', [
+        "tittle" => "Detail Blog",
+        "page" => "Blog Details",
+        "data" => $data, // Kirim objek tunggal ke view
+    ]);
+}
 
     
     public function edit($id)
@@ -86,7 +160,6 @@ class BlogController extends Controller
 
     public function update(Request $request, $id)
 {
-    // Validasi input
     $request->validate([
         'judul' => 'required|string|max:255',
         'isi' => 'required|string',
@@ -112,7 +185,6 @@ class BlogController extends Controller
         $gambarPath = $request->file('gambar')->store('images', 'public');
     }
 
-    // Update data tanpa mengubah primary key 'tanggal'
     $data->update([
         'judul' => $request->judul,
         'isi' => $request->isi,

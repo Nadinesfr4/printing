@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\BlogController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+
 
 Route::get('/', function () {
     return view ('client.home',[
@@ -51,12 +53,21 @@ Route::get('/portofolio_details', function () {
     ]);
 });
 
-Route::get('/blog_grid', function () {
-    return view ('client.blog_grid',[
-         "tittle" => "Blog",
-         "page" => "Blog Grid"
-    ]);
-});
+// Route::get('/blog_grid', function () {
+//     return view ('client.blog_grid',[
+//          "tittle" => "Blog",
+//          "page" => "Blog Grid"
+//     ]);
+// });
+
+// Route::get('/blog_grid/{id}', [BlogController::class, 'show'])->name('blog.show');
+
+// Rute untuk halaman blog tanpa parameter (semua post)
+// Route::get('/blog_grid', [BlogController::class, 'index'])->name('blog.index');
+
+// // Rute untuk halaman blog detail berdasarkan ID
+// Route::get('/blog_grid/{id}', [BlogController::class, 'show'])->name('blog.show');
+
 
 Route::get('/blog_details', function () {
     return view ('client.blog_details',[
@@ -65,4 +76,10 @@ Route::get('/blog_details', function () {
     ]);
 });
 
-Route::resource('dashboard',BlogController::class);
+// Rute untuk dashboard (CRUD admin)
+Route::resource('dashboard', BlogController::class);
+
+// Rute untuk blog grid (client)
+Route::get('/blog_grid', [BlogController::class, 'blogGrid'])->name('blog.index');
+
+// Route::get('/blog_grid/{id}', [BlogController::class, 'show'])->name('blog.show');

@@ -49,7 +49,7 @@ class BlogController extends Controller
 //     ]);
 // }
 
-public function index(Request $request)
+public function index (Request $request)
 {
     $katakunci = $request->katakunci;
     $jumlahbaris = 5;
@@ -119,9 +119,15 @@ public function blogGrid(Request $request)
 
 
     public function show(string $id)
-    {
-        return view('client.blog_grid');
-    }
+{
+    $data = Blog::findOrFail($id); // Ambil data berdasarkan ID
+
+    return view('client.blog_details', [
+        "tittle" => "Detail Blog",
+        "page" => "Blog Details",
+        "data" => $data, // Kirim objek tunggal ke view
+    ]);
+}
 
 
     public function edit($id)

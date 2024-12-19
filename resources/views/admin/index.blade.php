@@ -1,10 +1,10 @@
- @extends('admin.template')
+@extends('admin.template')
  @section('konten')
 <!-- START DATA -->
 <div class="my-3 p-3 bg-body rounded shadow-sm">
 <!-- FORM PENCARIAN -->
 <div class="pb-3">
-<form class="d-flex" action="{{ url ('dashboard') }}" method="get">
+<form class="d-flex" action="{{ route ('blog.index') }}" method="get">
     <input class="form-control me-1" type="search" name="katakunci" 
     value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" aria-label="Search">
     <button class="btn btn-secondary" type="submit">Cari</button>
@@ -13,7 +13,7 @@
 
 <!-- TOMBOL TAMBAH DATA -->
 <div class="pb-3">
-<a href='{{ url ('dashboard/create') }}' class="btn btn-primary">+ Tambah Blog</a>
+<a href='{{ route ('blog.create') }}' class="btn btn-primary">+ Tambah Blog</a>
 </div>
 
 @if(session('success'))
@@ -48,9 +48,10 @@
 </td>
 <td>
     {{-- <a href="{{ url('blog_grid', $item->id) }}" class="btn btn-info btn-sm">Detail</a> --}}
-    <a href="{{ route('blog.index', $item->id) }}" class="btn btn-info btn-sm">Detail</a>
-    <a href="{{ url('dashboard/'.$item->id.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
-    <form onsubmit="return confirm('Yakin Akan Menghapus Blog?')" class="d-inline" action="{{ url('dashboard/'. $item->id) }}" method="post">
+    {{-- <a href="{{ route('blog_grid', $item->id) }}" class="btn btn-info btn-sm">Detail</a> --}}
+    <a href="{{ route('blog.blogGrid'), $item->id }}" class="btn btn-info btn-sm">Detail</a>
+    <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+    <form onsubmit="return confirm('Yakin Akan Menghapus Blog?')" class="d-inline" action="{{ route('blog.hapus', $item->id) }}" method="post">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>

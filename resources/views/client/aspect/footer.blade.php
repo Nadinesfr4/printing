@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="brand_logo">
                         <a href="#!">
-                            <img src="assets/images/logo/logo_01_1x.png" srcset="assets/images/logo/logo_01_2x.png 2x" alt="logo_not_found">
+                            <img src={{ asset ("assets/images/logo/logo_01_1x.png") }} srcset={{ asset ("assets/images/logo/logo_01_1x.png") }} alt="logo_not_found">
                         </a>
                     </div>
                 </div>
@@ -15,25 +15,25 @@
                     <div class="brands_list">
                         <div class="logo_image">
                             <a href="#!">
-                                <img src="assets/images/brands/img_05.png" alt="logo_not_found">
+                                <img src={{ asset ("assets/images/brands/img_05.png") }} alt="logo_not_found">
                             </a>
                         </div>
 
                         <div class="logo_image">
                             <a href="#!">
-                                <img src="assets/images/brands/img_06.png" alt="logo_not_found">
+                                <img src={{ asset ("assets/images/brands/img_06.png") }} alt="logo_not_found">
                             </a>
                         </div>
 
                         <div class="logo_image">
                             <a href="#!">
-                                <img src="assets/images/brands/img_07.png" alt="logo_not_found">
+                                <img src={{ asset ("assets/images/brands/img_07.png") }} alt="logo_not_found">
                             </a>
                         </div>
 
                         <div class="logo_image">
                             <a href="#!">
-                                <img src="assets/images/brands/img_08.png" alt="logo_not_found">
+                                <img src={{ asset ("assets/images/brands/img_08.png") }} alt="logo_not_found">
                             </a>
                         </div>
                     </div>
@@ -75,12 +75,12 @@
                         <ul class="ul_li_block clearfix">
                             <li>
                                 <div class="small_blog clearfix">
-                                    <a class="item_image" target="_blank" href="blog_details.html">
-                                        <img src="assets/images/recent_works/img_01.png" alt="image_not_found">
+                                    <a class="item_image" target="_blank" href="blog_details">
+                                        <img src={{ asset ("assets/images/recent_works/img_01.png") }} alt="image_not_found">
                                     </a>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a target="_blank" href="blog_details.html">
+                                            <a target="_blank" href="blog_details">
                                                 Web Designers Can Help Restaura Move Into
                                             </a>
                                         </h3>
@@ -91,12 +91,12 @@
 
                             <li>
                                 <div class="small_blog clearfix">
-                                    <a class="item_image" target="_blank" href="blog_details.html">
-                                        <img src="assets/images/recent_works/img_02.png" alt="image_not_found">
+                                    <a class="item_image" target="_blank" href="blog_details">
+                                    <img src={{ asset ("assets/images/recent_works/img_02.png") }} alt="image_not_found">
                                     </a>
                                     <div class="item_content">
                                         <h3 class="item_title">
-                                            <a target="_blank" href="blog_details.html">
+                                            <a target="_blank" href="blog_details">
                                                 Building Facial Recognits Web Application React
                                             </a>
                                         </h3>

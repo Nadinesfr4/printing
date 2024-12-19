@@ -10,24 +10,75 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        $katakunci = $request->katakunci;
-        $jumlahbaris = 5;
-        if (strlen($katakunci)){
-            $data = Blog::where('judul', 'like', "%$katakunci%")
+
+//     public function index(Request $request)
+// {
+//     $katakunci = $request->katakunci;
+//     $jumlahbaris = 5;
+
+//     if (strlen($katakunci)) {
+//         $data = Blog::where('judul', 'like', "%$katakunci%")
+//             ->orWhere('penulis', 'like', "%$katakunci%")
+//             ->paginate($jumlahbaris);
+//     } else {
+//         $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+//     }
+
+//     return view('client.blog_grid', [
+//         'tittle' => 'Blog',
+//         'page' => 'Blog Grid',
+//         'data' => $data
+//     ]);
+// }
+
+// public function index(Request $request)
+// {
+//     $katakunci = $request->katakunci;
+//     $jumlahbaris = 5;
+
+//     if (strlen($katakunci)) {
+//         $data = Blog::where('judul', 'like', "%$katakunci%")
+//             ->orWhere('penulis', 'like', "%$katakunci%")
+//             ->paginate($jumlahbaris);
+//     } else {
+//         $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+//     }
+
+//     return view('admin.index', [ // Gunakan view admin untuk dashboard
+//         'data' => $data,
+//     ]);
+// }
+
+public function index(Request $request)
+{
+    $katakunci = $request->katakunci;
+    $jumlahbaris = 5;
+
+    if (strlen($katakunci)) {
+        $data = Blog::where('judul', 'like', "%$katakunci%")
             ->orWhere('penulis', 'like', "%$katakunci%")
-            -> paginate($jumlahbaris);
-        }else{
-            $data = Blog::orderBy('id','desc') -> paginate($jumlahbaris);
-        }
-        return view('admin.index')->with('data', $data);
+            ->paginate($jumlahbaris);
+    } else {
+        $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
     }
 
+    return view('admin.index', [ // Admin dashboard view
+        'data' => $data,
+    ]);
+}
 
-    /**
-     * Show the form for creating a new resource.
-     */
+public function blogGrid(Request $request)
+{
+    $jumlahbaris = 5;
+    $data = Blog::orderBy('id', 'desc')->paginate($jumlahbaris);
+
+    return view('client.blog_grid', [ // Client blog grid view
+        'tittle' => 'Blog',
+        'page' => 'Blog Grid',
+        'data' => $data
+    ]);
+}
+    
     public function create()
     {
         return view('admin.create');

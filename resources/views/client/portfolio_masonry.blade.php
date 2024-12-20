@@ -2,7 +2,6 @@
 @section('content')
     <main>
 
-        @include('admin.sidebar')
         <!-- portfolio_section - start -->
         <section class="portfolio_section sec_ptb_130 clearfix">
             <div class="container">

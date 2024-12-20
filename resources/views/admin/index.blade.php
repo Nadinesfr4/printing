@@ -1,7 +1,8 @@
 @extends('admin.template')
- @section('konten')
+@section('konten')
+
 <!-- START DATA -->
-<div class="my-3 p-3 bg-body rounded shadow-sm">
+<div class="my-3 p-3 bg-body rounded shadow-sm" >
 <!-- FORM PENCARIAN -->
 <div class="pb-3">
 <form class="d-flex" action="{{ route ('blog.index') }}" method="get">
@@ -12,7 +13,7 @@
 </div>
 
 <!-- TOMBOL TAMBAH DATA -->
-<div class="pb-3">
+<div class="pb-6" style="background-color: white">
 <a href='{{ route ('blog.create') }}' class="btn btn-primary">+ Tambah Blog</a>
 </div>
 
@@ -20,21 +21,21 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-<table class="table table-striped">
-<thead>
-    <tr>
-        <th class="col-md-1">No</th>
-        <th class="col-md-1">Tanggal</th>
-        <th class="col-md-1">Post Tittle</th>
-        <th class="col-md-1">Nama Penulis</th>
-        <th class="col-md-1">Cover</th>
-        <th class="col-md-1">Aksi</th>
+<table class="table table-striped" style="background-color: white">
+<thead style="background-color: white">
+    <tr >
+        <th class="col-md-2">No</th>
+        <th class="col-md-2">Tanggal</th>
+        <th class="col-md-2">Post Tittle</th>
+        <th class="col-md-2">Nama Penulis</th>
+        <th class="col-md-2">Cover</th>
+        <th class="col-md-2">Aksi</th>
     </tr>
 </thead>
 <tbody>
 
 @foreach ($data as $item)
-<tr>
+<tr style="background-color: white">
 <td>{{ $loop->iteration }}</td>
 <td>{{ $item->tanggal }}</td>
 <td>{{ $item->judul }}</td>
@@ -46,7 +47,7 @@
         Tidak ada gambar
     @endif
 </td>
-<td>
+<td style="background-color: white">
     {{-- <a href="{{ url('blog_grid', $item->id) }}" class="btn btn-info btn-sm">Detail</a> --}}
     {{-- <a href="{{ route('blog_grid', $item->id) }}" class="btn btn-info btn-sm">Detail</a> --}}
     <a href="{{ route('blog.blogGrid'), $item->id }}" class="btn btn-info btn-sm">Detail</a>
@@ -60,5 +61,6 @@
 </tr>
 @endforeach
 {{ $data->links() }}
+
 
 @endsection

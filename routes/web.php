@@ -33,12 +33,12 @@ Route::get('/portofolio_details', function () {
     ]);
 });
 
-Route::get('/blog_grid', function () {
-    return view('client.blog_grid', [
-        "tittle" => "Blog",
-        "page" => "Blog Grid"
-    ]);
-});
+// Route::get('/blog_grid', function () {
+//     return view('client.blog_grid', [
+//         "tittle" => "Blog",
+//         "page" => "Blog Grid"
+//     ]);
+// });
 
 Route::get('/blog_details', function () {
     return view('client.blog_details', [
@@ -46,6 +46,8 @@ Route::get('/blog_details', function () {
         "page" => "Blog Details"
     ]);
 });
+
+Route::get('/blog_grid', [BlogController::class, 'blogGrid'])->name('blog.blogGrid');
 
 // Route::resource('dashboard',BlogController::class);
 Route::prefix('blog')->group(function () {

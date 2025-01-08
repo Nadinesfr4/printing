@@ -137,7 +137,7 @@
                                     </li>
             
                                     <li class="{{ ($tittle === 'Blog') ? 'active' : '' }}">
-                                        <a href="{{ route('blog.index') }}">Blog</a>
+                                        <a href="{{ route('blog.blogGrid') }}">Blog</a>
                                    </li>
             
                                     <li class="{{ ($tittle === 'Contact') ? 'active' : '' }}">

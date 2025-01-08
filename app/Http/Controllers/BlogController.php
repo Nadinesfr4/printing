@@ -120,7 +120,13 @@ public function blogGrid(Request $request)
 
     public function show(string $id)
     {
-        return view('client.blog_grid');
+    $data = Blog::findOrFail($id); // Ambil data berdasarkan ID
+
+    return view('client.blog_details', [
+        "tittle" => "Detail Blog",
+        "page" => "Blog Details",
+        "data" => $data, // Kirim objek tunggal ke view
+    ]);
     }
 
 

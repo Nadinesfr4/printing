@@ -18,7 +18,7 @@ class LandingPageController extends Controller
 
     public function home()
     {
-        $tittle = "Product";
+        $tittle = "Home";
         $page = "Product";
         return view('client.home', compact('tittle', 'page'));
     }

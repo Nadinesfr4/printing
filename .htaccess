@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Set base directory ke folder 'lpprinting'
+    RewriteBase /lpprinting
+
+    # Arahkan semua permintaan ke folder 'public'
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Jika file atau folder tidak ditemukan, arahkan ke index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ public/index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Header keamanan opsional
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Tentukan versi PHP yang digunakan jika diperlukan
+AddHandler application/x-httpd-php74 .php
